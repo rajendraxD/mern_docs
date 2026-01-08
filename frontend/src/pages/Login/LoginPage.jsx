@@ -108,8 +108,8 @@ const LoginPage = () => {
         className="flex flex-col justify-center items-center h-[calc(100vh)]" //h-screen
       >
         <Card
-          className="w-80 md:w-100 rounded-2xl! md:p-1"
-          variant="elevation"
+          className="w-80 md:w-100 rounded-1xl md:rounded-2xl! md:p-1!"
+          variant={isMobile ? "outlined" : "elevation"}
         >
           <CardHeader
             className="py-1!"
