@@ -207,7 +207,7 @@ const LoginPage = () => {
                   loading={loading}
                   loadingIndicator="Logging in..."
                   disabled={isFormInvalid}
-                  size={isMobile ? 'small' : 'medium'}
+                  // size={isMobile ? 'small' : 'medium'}
                 >
                   Login
                 </Button>
@@ -233,7 +233,7 @@ const LoginPage = () => {
                 </IconButton>
                 <IconButton
                   aria-label="login with facebook"
-                  size={isMobile ? 'small' : 'medium'}
+                  // size={isMobile ? 'small' : 'medium'}
                   disabled
                   color="inherit"
                 >
