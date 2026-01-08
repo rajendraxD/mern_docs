@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import useThemeStore from '../stores/useThemeStore';
 import useDevice from '../utils/useMediaQuery';
 import { Avatar, Box, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import { DarkMode, Delete, Home, InventoryOutlined, LightMode, Menu, OneKkRounded, Person, ProductionQuantityLimits, ReportTwoTone, Settings, TramSharp, WorkHistory } from '@mui/icons-material'
+import { DarkMode, Delete, Home, InventoryOutlined, LightMode, Menu, OneKkRounded, Person, Person2, ProductionQuantityLimits, ReportTwoTone, Settings, TramSharp, WorkHistory } from '@mui/icons-material'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { theme, toggleTheme } = useThemeStore();
@@ -12,6 +12,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   const sidebarItems = [
     { icon: Home, label: 'Home', url: '/home', matchPaths: ['/', '/home'] },
+    { icon: Person2, label: 'Profile', url: '/profile' },
     // { icon: ProductionQuantityLimits, label: 'Product', url: '#' },
     // { icon: ReportTwoTone, label: 'Reporting', url: '#' },
     // { icon: OneKkRounded, label: 'Order summary', url: '#' },
@@ -64,12 +65,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               ${theme === 'light' ? 'bg-[#E9EEF6]' : 'bg-[#1E1F20]'}
               w-full max-w-60`}>
             <nav aria-label="Nav">
-              <List dense={true}
+              <List dense={false}
               sx={{
                 //  paddingX: 0.5,
-                 display: 'flex',
-                 flexDirection: 'column',
-                 gap: 1,
+                //  display: 'flex',
+                //  flexDirection: 'column',
+                //  gap: 1,
                 //  marginX:0.5,
                 //  borderRadius: 10
 
