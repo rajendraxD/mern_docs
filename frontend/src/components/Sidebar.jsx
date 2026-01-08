@@ -32,12 +32,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <Menu size={18} />
               </IconButton>
             </div>
-            
+
             {sidebarOpen &&
               <div className="flex flex-col justify-center items-center">
                 <Avatar alt="Rajendra kumar" src="/static/images/avatar/1.jpg" sx={{ width: 70, height: 70 }} />
-                <span className='text-[20px] font-semibold'>Rajendra kumar</span>
-                <span className='text-[15px] text-zinc-500'>rajendraxd1@gmail.com</span>
+                <span className='text-[20px] font-semibold max-w-60 truncate'>Rajendra kumar</span>
+                <span className='text-[14px] text-zinc-500 max-w-60 truncate'>rajendraxd1@gmail.com</span>
               </div>
             }
           </div>
@@ -83,7 +83,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </List>
         </div>
       </div>
-      {/* </div> */}
     </>
   )
 }
