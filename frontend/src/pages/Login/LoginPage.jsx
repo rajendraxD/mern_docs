@@ -1,19 +1,3 @@
-// import React from 'react'
-
-// const LoginPage = () => {
-//     return (
-//         <>
-//             <div className='relative w-full h-[calc(100vh-64px)]'>
-//                 <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-//                     <div>Login</div>
-//                 </div>
-//             </div>
-//         </>
-//     )
-// }
-
-// export default LoginPage
-
 import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -122,7 +106,7 @@ const LoginPage = () => {
         className="flex flex-col justify-center items-center h-[calc(100vh)]" //h-screen
       >
         <Card
-          className="w-100 rounded-2xl! p-1"
+          className="w-90 md:w-100 rounded-2xl! md:p-1"
           variant="elevation"
         >
           <CardHeader
