@@ -20,6 +20,7 @@ import {
   RemoveRedEyeSharp,
 } from "@mui/icons-material";
 import { useState } from "react";
+import useDevice from "../../utils/useMediaQuery";
 
 const initialFormData = {
   email: "",
@@ -31,6 +32,7 @@ const LoginPage = () => {
   const [errors, SetErrors] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
+  const { isMobile } = useDevice();
 
   const isFormInvalid =
     !formData.email.trim() ||
@@ -106,7 +108,7 @@ const LoginPage = () => {
         className="flex flex-col justify-center items-center h-[calc(100vh)]" //h-screen
       >
         <Card
-          className="w-90 md:w-100 rounded-2xl! md:p-1"
+          className="w-80 md:w-100 rounded-2xl! md:p-1"
           variant="elevation"
         >
           <CardHeader
@@ -128,7 +130,7 @@ const LoginPage = () => {
             }
           />
           <CardContent className="py-2!">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 md:gap-2">
               <div
                 aria-label="text-field with checkbox"
                 className="flex flex-col gap-1"
@@ -142,6 +144,7 @@ const LoginPage = () => {
                     helperText={errors.email}
                     value={formData.email}
                     onChange={handleOnChange}
+                    size={isMobile ? 'small' : 'medium'}
                     slotProps={{
                       input: {
                         startAdornment: (
@@ -161,6 +164,7 @@ const LoginPage = () => {
                     helperText={errors.password}
                     value={formData.password}
                     onChange={handleOnChange}
+                    size={isMobile ? 'small' : 'medium'}
                     type="password"
                     slotProps={{
                       input: {
@@ -186,10 +190,11 @@ const LoginPage = () => {
                       name="rememberMe"
                       checked={formData.rememberMe}
                       onChange={handleOnChange}
+                      size={isMobile ? 'small' : 'medium'}
                     />
-                    <span>Remember me</span>
+                    <span className="text-sm">Remember me</span>
                   </div>
-                  <Link href="#" underline="none">
+                  <Link href="#" underline="none" className="text-sm!">
                     {"Forgotten password?"}
                   </Link>
                 </div>
@@ -198,11 +203,11 @@ const LoginPage = () => {
                 <Button
                   variant="contained"
                   className="w-full normal-case!"
-                  size="large"
                   onClick={onSubmit}
                   loading={loading}
                   loadingIndicator="Logging in..."
                   disabled={isFormInvalid}
+                  size={isMobile ? 'small' : 'medium'}
                 >
                   Login
                 </Button>
@@ -210,17 +215,17 @@ const LoginPage = () => {
                   variant="contained"
                   className="normal-case!"
                   color="secondary"
-                  size="large"
                   onClick={onClear}
+                  size={isMobile ? 'small' : 'large'}
                 >
                   Clear
                 </Button>
               </div>
-              <Divider>or</Divider>
+              <Divider className="p-0!">or</Divider>
               <div className="flex gap-1 justify-center items-center">
                 <IconButton
                   aria-label="login with google"
-                  size="medium"
+                  size={isMobile ? 'small' : 'medium'}
                   // disabled
                   color="inherit"
                 >
@@ -228,7 +233,7 @@ const LoginPage = () => {
                 </IconButton>
                 <IconButton
                   aria-label="login with facebook"
-                  size="medium"
+                  size={isMobile ? 'small' : 'medium'}
                   disabled
                   color="inherit"
                 >
