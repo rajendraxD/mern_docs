@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <>
       <div className='p-2 flex flex-col h-screen'>
-        <div className='text-3xl font-bold mb-8'>HomePage</div>
+        <div className='text-3xl font-bold mb-8'>Home</div>
       </div>
     </>
   )

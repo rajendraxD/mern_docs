@@ -12,12 +12,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   const sidebarItems = [
     { icon: Home, label: 'Home', url: '/home', matchPaths: ['/', '/home'] },
-    { icon: ProductionQuantityLimits, label: 'Product', url: '#' },
-    { icon: ReportTwoTone, label: 'Reporting', url: '#' },
-    { icon: OneKkRounded, label: 'Order summary', url: '#' },
-    { icon: InventoryOutlined, label: 'Invoices', url: '#' },
-    { icon: WorkHistory, label: 'Manufactures', url: '#' },
-    { icon: Delete, label: 'Trash', url: '#' },
+    // { icon: ProductionQuantityLimits, label: 'Product', url: '#' },
+    // { icon: ReportTwoTone, label: 'Reporting', url: '#' },
+    // { icon: OneKkRounded, label: 'Order summary', url: '#' },
+    // { icon: InventoryOutlined, label: 'Invoices', url: '#' },
+    // { icon: WorkHistory, label: 'Manufactures', url: '#' },
+    // { icon: Delete, label: 'Trash', url: '#' },
     // { icon: Person, label: 'Profile', url: '/profile' },
   ];
   return (
