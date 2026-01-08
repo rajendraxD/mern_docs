@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import useThemeStore from '../stores/useThemeStore';
 import useDevice from '../utils/useMediaQuery';
 import { Avatar, Box, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import { DarkMode, Home, LightMode, Menu, Person, Settings } from '@mui/icons-material'
+import { DarkMode, Delete, Home, InventoryOutlined, LightMode, Menu, OneKkRounded, Person, ProductionQuantityLimits, ReportTwoTone, Settings, TramSharp, WorkHistory } from '@mui/icons-material'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { theme, toggleTheme } = useThemeStore();
@@ -12,8 +12,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   const sidebarItems = [
     { icon: Home, label: 'Home', url: '/home', matchPaths: ['/', '/home'] },
-    { icon: Person, label: 'Profile', url: '/profile' },
-    // { icon: Settings, label: 'Settings', url: '/settings' },
+    { icon: ProductionQuantityLimits, label: 'Product', url: '#' },
+    { icon: ReportTwoTone, label: 'Reporting', url: '#' },
+    { icon: OneKkRounded, label: 'Order summary', url: '#' },
+    { icon: InventoryOutlined, label: 'Invoices', url: '#' },
+    { icon: WorkHistory, label: 'Manufactures', url: '#' },
+    { icon: Delete, label: 'Trash', url: '#' },
+    // { icon: Person, label: 'Profile', url: '/profile' },
   ];
   return (
     <>

@@ -1,5 +1,5 @@
-import { DarkMode, LightMode, Menu, Person } from '@mui/icons-material'
-import { IconButton } from '@mui/material'
+import { DarkMode, LightMode, Menu, Person, Search } from '@mui/icons-material'
+import { IconButton, InputAdornment, TextField } from '@mui/material'
 import React from 'react'
 import useDevice from '../utils/useMediaQuery';
 
@@ -15,9 +15,27 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           </IconButton>
         }
         {!isMobile &&
-          <span className='text-[clamp(1rem,5vw,2rem)] font-semibold'>Good Morning🌤️</span>
+          <div className=' flex flex-col'>
+            <span className='text-[clamp(0.2rem,2vw,1.5rem)] font-semibold'>Good Morning🌤️</span>
+            <span className='text-[clamp(0.2rem,1.5vw,.8rem)] font-light'>Crush today, code tomorrow.</span>
+          </div>
         }
-
+        <div>
+          {/* <TextField
+            id="search-field"
+            size="small"
+            placeholder="Search..."
+            // value={searchValue}
+            // onChange={handleChange}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Search/>
+                </InputAdornment>
+              )
+            }}
+          /> */}
+        </div>
         <div>
           <IconButton>
             <Person size={18} />
