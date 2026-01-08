@@ -1,30 +1,19 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom';  // Rename to avoid conflict
+import { Link, useLocation } from 'react-router-dom';
 import useThemeStore from '../stores/useThemeStore';
 import useDevice from '../utils/useMediaQuery';
 import { Avatar, Box, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import { Home, Menu, Person, Settings } from '@mui/icons-material'
+import { DarkMode, Home, LightMode, Menu, Person, Settings } from '@mui/icons-material'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const { theme } = useThemeStore();
+  const { theme, toggleTheme } = useThemeStore();
   const { isMobile } = useDevice();
   const location = useLocation();
-  // const [selectedIndex, setSelectedIndex] = React.useState(0);
-  // const navigate = useNavigate();
 
-  // const handleItemClick = (index, url) => {
-  //   setSelectedIndex(index);
-  //   // setSidebarOpen(false);  // Close mobile sidebar
-  //   if (url !== '#') { navigate(url) };
-  // };
-  // React.useEffect(() => {
-  //   // Default to first item or based on path
-  //   setSelectedIndex(0);
-  // }, []);
   const sidebarItems = [
     { icon: Home, label: 'Home', url: '/home', matchPaths: ['/', '/home'] },
     { icon: Person, label: 'Profile', url: '/profile' },
-    { icon: Settings, label: 'Settings', url: '/settings' },
+    // { icon: Settings, label: 'Settings', url: '/settings' },
   ];
   return (
     <>
@@ -36,14 +25,20 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           :
           (sidebarOpen ? 'min-w-60' : 'w-15')
         }
-                 flex flex-col`}
+        flex flex-col`}
       >
         <div className="flex gap-3 p-2">
           <div className='flex flex-col w-full'>
-            <div className=''>
+            <div className='flex justify-between'>
               <IconButton onClick={() => setSidebarOpen(!sidebarOpen)}  >
                 <Menu size={18} />
               </IconButton>
+              {sidebarOpen &&
+                <IconButton aria-label="" onClick={toggleTheme}>
+                  {theme === 'light' ? <LightMode size={18} /> : <DarkMode size={18} />}
+                </IconButton>
+              }
+
             </div>
 
             {sidebarOpen &&
@@ -64,7 +59,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               ${theme === 'light' ? 'bg-[#E9EEF6]' : 'bg-[#1E1F20]'}
               w-full max-w-60`}>
             <nav aria-label="Nav">
-              <List dense={false}>
+              <List dense={true}
+              sx={{
+                //  paddingX: 0.5,
+                 display: 'flex',
+                 flexDirection: 'column',
+                 gap: 1,
+                //  marginX:0.5,
+                //  borderRadius: 10
+
+              }}
+              >
                 {sidebarItems.map((item, index) => (
                   <ListItem key={index} disablePadding>
                     <ListItemButton component={Link} to={item.url}
@@ -87,7 +92,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         <div className='mt-auto '>
           <List dense={false}>
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to="/settings">
                 <ListItemIcon>
                   <Settings />
                 </ListItemIcon>

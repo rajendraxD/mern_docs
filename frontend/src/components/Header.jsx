@@ -1,11 +1,9 @@
 import { DarkMode, LightMode, Menu, Person } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import React from 'react'
-import useThemeStore from '../stores/useThemeStore';
 import useDevice from '../utils/useMediaQuery';
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
-  const { theme, toggleTheme } = useThemeStore();
   const { isMobile } = useDevice();
 
   return (
@@ -16,15 +14,11 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
             <Menu size={18} />
           </IconButton>
         }
-        <div>Logo</div>
+        {!isMobile &&
+          <span className='text-[clamp(1rem,5vw,2rem)] font-semibold'>Good Morning🌤️</span>
+        }
+
         <div>
-          {theme === 'light' ?
-            <IconButton aria-label="" onClick={toggleTheme}>
-              <LightMode size={18} />
-            </IconButton > : <IconButton aria-label="" onClick={toggleTheme}>
-              <DarkMode size={18} />
-            </IconButton>
-          }
           <IconButton>
             <Person size={18} />
           </IconButton>
