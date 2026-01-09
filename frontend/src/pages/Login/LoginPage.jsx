@@ -226,7 +226,7 @@ const LoginPage = () => {
                 <IconButton
                   aria-label="login with google"
                   size={isMobile ? 'small' : 'medium'}
-                  // disabled
+                  disabled
                   color="inherit"
                 >
                   <Google fontSize="large" />
