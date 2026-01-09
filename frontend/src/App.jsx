@@ -8,6 +8,7 @@ import PageNotFound from './pages/PageNotFound/PageNotFound';
 import LoginPage from './pages/Login/LoginPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 import SettingPage from './pages/Settings/SettingPage';
+import { ProtectedRoute, PublicRoute } from './components/RouteAccess';
 
 const App = () => {
   const { theme } = useThemeStore();
@@ -31,14 +32,21 @@ const App = () => {
     <ThemeProvider theme={muiTheme}>
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<LoginPage />} />
-          <Route element={<Layout />}>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/home' element={<HomePage />} />
-            <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/settings' element={<SettingPage />} />
-            {/* <Route path="/*" element={<div className='text-5xl flex flex-row items-center justify-center h-screen'><span className='text-red-800'>404</span> <span className='flex mx-2'>|</span><span> Page Not Found</span> </div>} /> */}
-            <Route path="/*" element={<PageNotFound />} />
+          {/* Public Routes */}
+          <Route element={<PublicRoute />} >
+            <Route path='/login' element={<LoginPage />} />
+          </Route>
+
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/home' element={<HomePage />} />
+              <Route path='/profile' element={<ProfilePage />} />
+              <Route path='/settings' element={<SettingPage />} />
+              {/* <Route path="/*" element={<div className='text-5xl flex flex-row items-center justify-center h-screen'><span className='text-red-800'>404</span> <span className='flex mx-2'>|</span><span> Page Not Found</span> </div>} /> */}
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

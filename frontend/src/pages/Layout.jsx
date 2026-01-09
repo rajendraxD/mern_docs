@@ -15,7 +15,7 @@ export default function Layout() {
     }, [isMobile])
     return (
         <>
-            <div className='flex w-full h-screen overflow-hidden'>
+            <div className='flex w-full h-screen overflow-y-auto overflow-x-hidden'>
 
                 {/* SIDEBAR */}
                 <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

@@ -1,11 +1,17 @@
-import { DarkMode, LightMode, Menu, Person, Search } from '@mui/icons-material'
+import { DarkMode, LightMode, Logout, Menu, Person, Search } from '@mui/icons-material'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import React from 'react'
 import useDevice from '../utils/useMediaQuery';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const { isMobile } = useDevice();
+  const navigate = useNavigate();
 
+  const onLogout = () => {
+    localStorage.removeItem('token');
+    navigate("/login")
+  }
   return (
     <>
       <div className="flex justify-between items-center p-2">
@@ -39,6 +45,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
         <div>
           <IconButton>
             <Person size={18} />
+          </IconButton>
+          <IconButton onClick={onLogout}>
+            <Logout size={18} />
           </IconButton>
         </div >
       </div >

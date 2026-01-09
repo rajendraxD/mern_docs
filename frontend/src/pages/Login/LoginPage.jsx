@@ -21,6 +21,7 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import useDevice from "../../utils/useMediaQuery";
+import { useNavigate } from "react-router-dom";
 
 const initialFormData = {
   email: "",
@@ -33,6 +34,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
   const { isMobile } = useDevice();
+  const navigate = useNavigate();
 
   const isFormInvalid =
     !formData.email.trim() ||
@@ -84,7 +86,8 @@ const LoginPage = () => {
       setLoading(true);
       console.log("formData", formData);
       //   const res = await userLogin(formData);
-      // localStorage.setItem("token", res.token);
+      localStorage.setItem("token", true);
+      navigate("/home")
     } catch (error) {
       console.log(error);
     } finally {
@@ -207,7 +210,7 @@ const LoginPage = () => {
                   loading={loading}
                   loadingIndicator="Logging in..."
                   disabled={isFormInvalid}
-                  // size={isMobile ? 'small' : 'medium'}
+                // size={isMobile ? 'small' : 'medium'}
                 >
                   Login
                 </Button>
