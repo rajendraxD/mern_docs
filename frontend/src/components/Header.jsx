@@ -1,4 +1,4 @@
-import { DarkMode, LightMode, Logout, Menu, Person, Search } from '@mui/icons-material'
+import {  Logout, Menu, Person } from '@mui/icons-material'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import React from 'react'
 import useDevice from '../utils/useMediaQuery';
