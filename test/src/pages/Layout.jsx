@@ -17,12 +17,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Person, Settings, LightMode, DarkMode, Logout, Dashboard, Home, AssignmentInd } from '@mui/icons-material';
-import useThemeStore from './stores/useThemeStore';
-import useDevice from './utils/useMediaQuery';
-import Button from '@mui/material/Button';
+import useThemeStore from '../stores/useThemeStore';
+import useDevice from '../utils/useMediaQuery';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-// import { useNavigate } from "react-router-dom";
+import DashboardPage from './Dashboard/DashboardPage';
+import { Link, Outlet } from "react-router-dom";
+import { useState } from 'react';
 
 
 const drawerWidth = 240;
@@ -55,6 +56,8 @@ const closedMixin = (theme) => ({
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open' && prop !== 'isMobile',
 })(({ theme, open, isMobile }) => ({
+  // backgroundColor: theme.palette.background.default,
+  // color: theme.palette.text.primary,
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -111,6 +114,7 @@ export default function Layout() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
   // const navigate = useNavigate();
+  const [title, setTitle] = useState('fdd');
 
   const handleDrawerToggle = () => {
     isMobile ? setMobileOpen((v) => !v) : setOpen((v) => !v);
@@ -125,15 +129,18 @@ export default function Layout() {
   const handleLogoutMenuBtnClick = () => {
     localStorage.removeItem('token');
     // navigate('/login');
-    console.log('first')
+    console.log('Logout')
   }
 
   const sidebarMenu = [{
-    title: 'Home',
-    icon: <Home />,
+    title: 'Dashboard',
+    icon: <Dashboard />,
+    url: '/dashboard',
+    matchPaths: ['/', '/Dashboard']
   }, {
     title: 'Profile',
     icon: <AssignmentInd />,
+    url: '/profile',
   },
     // {
     //   title: 'Logout',
@@ -155,6 +162,9 @@ export default function Layout() {
         {sidebarMenu.map((menu, index) => (
           <ListItem key={index} disablePadding sx={{ display: 'block' }} >
             <ListItemButton
+              component={menu.url ? Link : undefined}
+              to={menu.url || undefined} // Only set 'to' if url exists
+              selected={menu.matchPaths?.includes(location.pathname) || menu.url === location.pathname}
               sx={{
                 minHeight: 48,
                 justifyContent: open || isMobile ? 'initial' : 'center',
@@ -230,7 +240,7 @@ export default function Layout() {
             </IconButton>
 
             <Typography variant="h6" noWrap>
-              Header
+              {title}
             </Typography>
           </div>
           <div className='flex justify-center items-center'>
@@ -297,9 +307,10 @@ export default function Layout() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>
+        {/* <Typography>
           This content shifts on desktop and stays fixed on mobile.
-        </Typography>
+        </Typography> */}
+        <Outlet context={{setTitle}}/>
       </Box>
     </Box>
   );
