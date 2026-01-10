@@ -4,21 +4,21 @@ import useThemeStore from './stores/useThemeStore';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 const App = () => {
-  const { theme } = useThemeStore();
+  const { themeMode } = useThemeStore();
 
   useEffect(() => {
     document.body.classList.remove('light', 'dark');
-    document.body.classList.add(theme);
-  }, [theme]);
+    document.body.classList.add(themeMode);
+  }, [themeMode]);
 
   const muiTheme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode: theme,
+          mode: themeMode,
         },
       }),
-    [theme]
+    [themeMode]
   );
 
   return (

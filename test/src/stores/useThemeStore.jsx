@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const applyThemeToBody = (theme) => {
+
+const applyThemeToBody = (themeMode) => {
     document.body.classList.remove("light", "dark");
-    document.body.classList.add(theme);
+    document.body.classList.add(themeMode);
 };
 let useThemeStore =
     (set, get) => ({

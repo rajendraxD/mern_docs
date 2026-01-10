@@ -18,9 +18,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Person, DarkMode, LightMode } from '@mui/icons-material';
-// import useThemeStore from '../../frontend/src/stores/useThemeStore';
+import { Person, Settings, LightMode, DarkMode } from '@mui/icons-material';
+import useThemeStore from './stores/useThemeStore';
+import useDevice from './utils/useMediaQuery';
 
 
 const drawerWidth = 240;
@@ -106,8 +106,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function MiniDrawer() {
   const theme = useTheme();
-  // const {themeMode,toggleTheme}=useThemeStore();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { themeMode, toggleTheme } = useThemeStore();
+  const isMobile = useDevice().isMobile;
 
   const [open, setOpen] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -122,11 +122,6 @@ export default function MiniDrawer() {
         <IconButton onClick={() => (isMobile ? setMobileOpen(false) : setOpen(false))}>
           {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
         </IconButton>
-        {/* <IconButton onClick={() => toggleTheme()}>
-          {
-          themeMode === 'light' ? <LightMode size={18} /> : <DarkMode size={18} />
-          }
-        </IconButton> */}
       </DrawerHeader>
 
       <Divider />
@@ -161,7 +156,7 @@ export default function MiniDrawer() {
       </List>
       {/* Dark setting */}
       <List className='mt-auto!'>
-      <Divider className='m-2!'/>
+        <Divider className='m-2!' />
         <ListItem disablePadding sx={{ display: 'block' }} >
           <ListItemButton
             sx={{
@@ -176,11 +171,11 @@ export default function MiniDrawer() {
                 justifyContent: 'center',
               }}
             >
-              <DarkMode />
+              <Settings />
             </ListItemIcon>
             <ListItemText
               sx={{ opacity: open || isMobile ? 1 : 0 }}
-            >Dark Mode</ListItemText>
+            >Settings</ListItemText>
           </ListItemButton>
         </ListItem>
       </List>
@@ -209,6 +204,11 @@ export default function MiniDrawer() {
             </Typography>
           </div>
           <div className='flex justify-center items-center'>
+            <IconButton onClick={() => toggleTheme()} color='inherit'>
+              {
+                themeMode === 'light' ? <LightMode size={18} /> : <DarkMode size={18} />
+              }
+            </IconButton>
             <IconButton aria-label="" color="inherit">
               <Person />
             </IconButton>
