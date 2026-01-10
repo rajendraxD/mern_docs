@@ -11,7 +11,9 @@ import Table from './Table';
 const DashboardPage = () => {
     const { setTitle } = useOutletContext(); // Get from context
     useEffect(() => {
-        setTitle('Dashboard')
+        if (setTitle) {
+            setTitle('Dashboard')
+        }
     }, [setTitle])
 
     const cards = [
