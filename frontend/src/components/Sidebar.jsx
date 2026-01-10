@@ -25,13 +25,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     <>
       <div className={`
                 ${theme === 'light' ? 'bg-[#E9EEF6]' : 'bg-[#1E1F20]'} 
+
                 ${isMobile
           ?
-          (sidebarOpen ? 'min-w-60 absolute z-100 h-full  translate-x-0' : '-translate-x-full hidden opacity-0')
+          (sidebarOpen
+            ? 'min-w-60 absolute z-100 h-full'
+            : 'hidden')
           :
           (sidebarOpen ? 'min-w-60' : 'w-15')
         }
-        flex flex-col`}
+         flex flex-col overflow-hidden`}
       >
         <div className="flex gap-3 p-2">
           <div className='flex flex-col w-full'>
@@ -66,15 +69,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               w-full max-w-60`}>
             <nav aria-label="Nav">
               <List dense={false}
-              sx={{
-                //  paddingX: 0.5,
-                //  display: 'flex',
-                //  flexDirection: 'column',
-                //  gap: 1,
-                //  marginX:0.5,
-                //  borderRadius: 10
+                sx={{
+                  //  paddingX: 0.5,
+                  //  display: 'flex',
+                  //  flexDirection: 'column',
+                  //  gap: 1,
+                  //  marginX:0.5,
+                  //  borderRadius: 10
 
-              }}
+                }}
               >
                 {sidebarItems.map((item, index) => (
                   <ListItem key={index} disablePadding>
