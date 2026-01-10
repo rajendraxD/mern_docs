@@ -136,7 +136,7 @@ export default function Layout() {
     title: 'Dashboard',
     icon: <Dashboard />,
     url: '/dashboard',
-    matchPaths: ['/', '/Dashboard']
+    matchPaths: ['/', '/dashboard']
   }, {
     title: 'Profile',
     icon: <AssignmentInd />,
