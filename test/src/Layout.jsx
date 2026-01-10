@@ -161,7 +161,7 @@ export default function MiniDrawer() {
       </List>
       {/* Dark setting */}
       <List className='mt-auto!'>
-      <Divider />
+      <Divider className='m-2!'/>
         <ListItem disablePadding sx={{ display: 'block' }} >
           <ListItemButton
             sx={{
