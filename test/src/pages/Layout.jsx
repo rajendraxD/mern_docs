@@ -305,12 +305,13 @@ export default function Layout() {
         </MuiDrawer>
       )}
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, height: { xs: 'calc(100vh - 56px)', sm: 'calc(100vh - 64px)' } }}
+      >
         <DrawerHeader />
         {/* <Typography>
           This content shifts on desktop and stays fixed on mobile.
         </Typography> */}
-        <Outlet context={{setTitle}}/>
+        <Outlet context={{ setTitle }} />
       </Box>
     </Box>
   );
