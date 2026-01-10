@@ -305,7 +305,7 @@ export default function Layout() {
         </MuiDrawer>
       )}
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3, height: { xs: 'calc(100vh - 56px)', sm: 'calc(100vh - 64px)' } }}
+      <Box component="main" sx={{ flexGrow: 1, p: 2, height: { xs: 'calc(100vh - 56px)', sm: 'calc(100vh - 64px)' } }}
       >
         <DrawerHeader />
         {/* <Typography>
