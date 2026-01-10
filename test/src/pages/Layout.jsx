@@ -22,7 +22,7 @@ import useDevice from '../utils/useMediaQuery';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import DashboardPage from './Dashboard/DashboardPage';
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet,useLocation } from "react-router-dom";
 import { useState } from 'react';
 
 
@@ -114,8 +114,13 @@ export default function Layout() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
   // const navigate = useNavigate();
-  const [title, setTitle] = useState('fdd');
-
+  const [title, setTitle] = useState('');
+  
+  const location = useLocation();
+  React.useEffect(() => {
+    setTitle(""); // Or setTitle("Page Not Found")
+  }, [location.pathname]);
+  
   const handleDrawerToggle = () => {
     isMobile ? setMobileOpen((v) => !v) : setOpen((v) => !v);
   };
@@ -308,9 +313,6 @@ export default function Layout() {
       <Box component="main" sx={{ flexGrow: 1, p: 2, height: { xs: 'calc(100vh - 56px)', sm: 'calc(100vh - 64px)' } }}
       >
         <DrawerHeader />
-        {/* <Typography>
-          This content shifts on desktop and stays fixed on mobile.
-        </Typography> */}
         <Outlet context={{ setTitle }} />
       </Box>
     </Box>

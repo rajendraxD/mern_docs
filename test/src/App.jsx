@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardPage from './pages/Dashboard/DashboardPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import { Navigate } from 'react-router-dom';
 
 const App = () => {
   const { themeMode } = useThemeStore();
@@ -31,7 +32,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />} >
-            <Route path='/' index element={<DashboardPage />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path='/dashboard' element={<DashboardPage />} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='*' element={<PageNotFound />} />
