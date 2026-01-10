@@ -21,8 +21,7 @@ import useThemeStore from '../stores/useThemeStore';
 import useDevice from '../utils/useMediaQuery';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import DashboardPage from './Dashboard/DashboardPage';
-import { Link, Outlet,useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { useState } from 'react';
 
 
@@ -115,12 +114,12 @@ export default function Layout() {
   const openMenu = Boolean(anchorEl);
   // const navigate = useNavigate();
   const [title, setTitle] = useState('');
-  
+
   const location = useLocation();
   React.useEffect(() => {
     setTitle(""); // Or setTitle("Page Not Found")
   }, [location.pathname]);
-  
+
   const handleDrawerToggle = () => {
     isMobile ? setMobileOpen((v) => !v) : setOpen((v) => !v);
   };
@@ -313,7 +312,7 @@ export default function Layout() {
       <Box component="main" sx={{ flexGrow: 1, p: 2, height: { xs: 'calc(100vh - 56px)', sm: 'calc(100vh - 64px)' } }}
       >
         <DrawerHeader />
-        <Outlet context={{ setTitle }} />
+        <Outlet />
       </Box>
     </Box>
   );

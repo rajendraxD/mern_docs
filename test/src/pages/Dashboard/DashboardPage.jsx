@@ -1,20 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Card from './Card'
 import InboxIcon from '@mui/icons-material/Inbox';
 import Person from '@mui/icons-material/Person';
 import MailIcon from '@mui/icons-material/Mail';
 import Settings from '@mui/icons-material/Settings';
 import Box from '@mui/material/Box';
-import { useOutletContext } from 'react-router-dom';
 import Table from './Table';
 
 const DashboardPage = () => {
-    const { setTitle } = useOutletContext(); // Get from context
-    useEffect(() => {
-        if (setTitle) {
-            setTitle('Dashboard')
-        }
-    }, [setTitle])
 
     const cards = [
         { title: 'Total Revenue', value: '$45,231', icon: <InboxIcon color="primary" />, trend: '+12%' },
