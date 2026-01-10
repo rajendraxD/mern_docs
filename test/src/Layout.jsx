@@ -16,11 +16,13 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { Person, Settings, LightMode, DarkMode } from '@mui/icons-material';
+import { Person, Settings, LightMode, DarkMode, Logout, Dashboard, Home, AssignmentInd } from '@mui/icons-material';
 import useThemeStore from './stores/useThemeStore';
 import useDevice from './utils/useMediaQuery';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+// import { useNavigate } from "react-router-dom";
 
 
 const drawerWidth = 240;
@@ -53,11 +55,6 @@ const closedMixin = (theme) => ({
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open' && prop !== 'isMobile',
 })(({ theme, open, isMobile }) => ({
-  // backgroundColor: '#1E1F20', // or use theme.palette.primary.main
-  // color: '#ffffff',
-  // backgroundColor: theme.palette.primary.main,
-  // color: theme.palette.primary.contrastText,
-
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -104,18 +101,45 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 /* ---------------- Component ---------------- */
 
-export default function MiniDrawer() {
+export default function Layout() {
   const theme = useTheme();
   const { themeMode, toggleTheme } = useThemeStore();
   const isMobile = useDevice().isMobile;
 
   const [open, setOpen] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
+  // const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     isMobile ? setMobileOpen((v) => !v) : setOpen((v) => !v);
   };
 
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  const handleLogoutMenuBtnClick = () => {
+    localStorage.removeItem('token');
+    // navigate('/login');
+    console.log('first')
+  }
+
+  const sidebarMenu = [{
+    title: 'Home',
+    icon: <Home />,
+  }, {
+    title: 'Profile',
+    icon: <AssignmentInd />,
+  },
+    // {
+    //   title: 'Logout',
+    //   icon: <Logout />,
+    // }
+  ]
   const drawerContent = (
     <>
       <DrawerHeader>
@@ -127,8 +151,9 @@ export default function MiniDrawer() {
       <Divider />
 
       <List className='overflow-y-auto overflow-x-hidden'>
-        {['Inbox', 'Starred', 'Send email'].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: 'block' }} >
+
+        {sidebarMenu.map((menu, index) => (
+          <ListItem key={index} disablePadding sx={{ display: 'block' }} >
             <ListItemButton
               sx={{
                 minHeight: 48,
@@ -143,11 +168,11 @@ export default function MiniDrawer() {
                   justifyContent: 'center',
                 }}
               >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {menu.icon}
               </ListItemIcon>
 
               <ListItemText
-                primary={text}
+                primary={menu.title}
                 sx={{ opacity: open || isMobile ? 1 : 0 }}
               />
             </ListItemButton>
@@ -157,7 +182,9 @@ export default function MiniDrawer() {
       {/* Dark setting */}
       <List className='mt-auto!'>
         <Divider className='m-2!' />
-        <ListItem disablePadding sx={{ display: 'block' }} >
+        <ListItem disablePadding
+          sx={{ display: 'block', }}
+        >
           <ListItemButton
             sx={{
               minHeight: 48,
@@ -182,6 +209,9 @@ export default function MiniDrawer() {
 
     </>
   );
+
+
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -209,9 +239,39 @@ export default function MiniDrawer() {
                 themeMode === 'light' ? <LightMode size={18} /> : <DarkMode size={18} />
               }
             </IconButton>
-            <IconButton aria-label="" color="inherit">
-              <Person />
-            </IconButton>
+
+            <div>
+              {/* <Button
+                  id="basic-button"
+                  aria-controls={openMenu ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openMenu ? 'true' : undefined}
+                  onClick={handleClick}
+                >
+                  Dashboard
+                </Button> */}
+
+              <IconButton aria-label="" color="inherit" onClick={handleMenuClick}>
+                <Person />
+              </IconButton>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleMenuClose}
+                slotProps={{
+                  list: {
+                    'aria-labelledby': 'basic-button',
+                  },
+                }}
+              >
+                <MenuItem onClick={handleMenuClose} disabled>Profile</MenuItem>
+                <MenuItem onClick={handleMenuClose} disabled>Settings</MenuItem>
+                <MenuItem onClick={handleLogoutMenuBtnClick}>Logout</MenuItem>
+              </Menu>
+            </div>
+
+
           </div>
 
         </Toolbar>
