@@ -22,8 +22,6 @@ import useDevice from '../utils/useMediaQuery';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { useState } from 'react';
-
 
 const drawerWidth = 240;
 
@@ -113,12 +111,8 @@ export default function Layout() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
   // const navigate = useNavigate();
-  const [title, setTitle] = useState('');
 
   const location = useLocation();
-  React.useEffect(() => {
-    setTitle(""); // Or setTitle("Page Not Found")
-  }, [location.pathname]);
 
   const handleDrawerToggle = () => {
     isMobile ? setMobileOpen((v) => !v) : setOpen((v) => !v);
@@ -140,7 +134,6 @@ export default function Layout() {
     title: 'Dashboard',
     icon: <Dashboard />,
     url: '/dashboard',
-    matchPaths: ['/', '/dashboard']
   }, {
     title: 'Profile',
     icon: <AssignmentInd />,
@@ -168,7 +161,7 @@ export default function Layout() {
             <ListItemButton
               component={menu.url ? Link : undefined}
               to={menu.url || undefined} // Only set 'to' if url exists
-              selected={menu.matchPaths?.includes(location.pathname) || menu.url === location.pathname}
+              selected={menu.url === location.pathname}
               sx={{
                 minHeight: 48,
                 justifyContent: open || isMobile ? 'initial' : 'center',
@@ -244,7 +237,7 @@ export default function Layout() {
             </IconButton>
 
             <Typography variant="h6" noWrap>
-              {title}
+              {'My App'}
             </Typography>
           </div>
           <div className='flex justify-center items-center'>
